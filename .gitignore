@@ -1,0 +1,17 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.idea/
+
+
+### VS Code ###
+.vscode/
+/lib
+
+
+## Zip files for submission ##
+**/*.zip
+
+
+**.pdf
