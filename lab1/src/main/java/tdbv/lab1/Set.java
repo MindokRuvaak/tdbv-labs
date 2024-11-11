@@ -1,13 +1,13 @@
 package tdbv.lab1;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.function.IntBinaryOperator;
 
 public class Set {
-  private ArrayList<Integer> a;
+  private final ArrayList<Integer> a;
 
   public Set() {
-    a = new ArrayList<Integer>();
+    a = new ArrayList<>();
   }
 
   public int[] toArray() {
@@ -22,10 +22,10 @@ public class Set {
     for (int i = 0; i < a.size(); i++) {
       if (a.get(i) > x) {
         a.add(i, x);
-        break;
+        return;
       } else {
         if (a.get(i) == x) {
-          break;
+          return;
         }
       }
     }
