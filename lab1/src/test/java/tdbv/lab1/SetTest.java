@@ -1,22 +1,24 @@
 package tdbv.lab1;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class SetTest {
-    Set testset;
+    Set testSet;
 
     @Before
     public void setup() {
-        testset = new Set();
+        testSet = new Set();
+        testSet.insert(10);
     }
 
 
     @Test
     public void constructorTest(){
-        assertTrue(testset instanceof Set);
+        assertTrue(testSet instanceof Set);
     }
 
     @Test
@@ -44,5 +46,11 @@ public class SetTest {
 
     }
 
+    @Test
+    public void memberTest(){
+        assertTrue(testSet.member(10));
+        assertFalse(testSet.member(5));
+        assertFalse(testSet.member(15));
+    }
     
 }

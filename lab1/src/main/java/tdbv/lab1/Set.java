@@ -18,7 +18,7 @@ public class Set {
     return ia;
   }
 
-  public void insert(int x) {
+  public void insert(int x) { //bugfix: replaced break with return
     for (int i = 0; i < a.size(); i++) {
       if (a.get(i) > x) {
         a.add(i, x);
