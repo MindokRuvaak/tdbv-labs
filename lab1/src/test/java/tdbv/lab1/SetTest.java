@@ -52,5 +52,20 @@ public class SetTest {
         assertFalse(testSet.member(5));
         assertFalse(testSet.member(15));
     }
+
+    @Test
+    public void intersectTest(){
+        Set a = new Set();
+        a.insert(10);
+        a.insert(15);
+        Set b = new Set();
+        b.insert(5);
+        b.insert(20);
+        b.insert(10);
+
+        a.intersect(b);
+        assertTrue(a.member(10));
+        
+    }
     
 }

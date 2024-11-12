@@ -46,12 +46,13 @@ public class Set {
   }
 
   public void intersect(Set s) {
-    for(int i = 0, j = 0 ; i < a.size() && j < s.a.size();) {
-      if (a.get(i).equals(s.a.get(j))){
+    ArrayList<Integer> b = s.a;
+    for(int i = 0, j = 0 ; i < a.size() && j < b.size();) {
+      if (a.get(i).equals(b.get(j))){
         i++;
         j++;
       } else {
-        if (a.get(i) < s.a.get(j)) {
+        if (a.get(i) < b.get(j)) {
           a.remove(i);
           i++;
         } else {
