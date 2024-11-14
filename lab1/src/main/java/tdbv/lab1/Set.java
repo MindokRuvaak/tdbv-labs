@@ -18,14 +18,14 @@ public class Set {
     return ia;
   }
 
-  public void insert(int x) { //bugfix: replaced break with return
+  public void insert(int x) {
     for (int i = 0; i < a.size(); i++) {
       if (a.get(i) > x) {
         a.add(i, x);
         return;
       } else {
         if (a.get(i) == x) {
-          return;
+          return; //bugfix: replaced break with return
         }
       }
     }
