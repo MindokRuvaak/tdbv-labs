@@ -45,21 +45,24 @@ public class Set {
     return false;
   }
 
-  public void intersect(Set s) {
+  public Set intersect(Set s) {
+    Set res = new Set(); 
     ArrayList<Integer> b = s.a;
     for(int i = 0, j = 0 ; i < a.size() && j < b.size();) {
       if (a.get(i).equals(b.get(j))){
+        res.insert(a.get(i));
         i++;
         j++;
       } else {
         if (a.get(i) < b.get(j)) {
-          a.remove(i);
+          //a.remove(i);
           i++;
         } else {
           j++;
         }
       }
     }
+    return res;
   }
 
   // Try with:

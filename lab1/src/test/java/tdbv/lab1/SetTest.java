@@ -54,7 +54,7 @@ public class SetTest {
     }
 
     @Test
-    public void intersectTest(){
+    public void intersectTestSC(){
         Set a = new Set();
         a.insert(10);
         a.insert(15);
@@ -63,9 +63,30 @@ public class SetTest {
         b.insert(20);
         b.insert(10);
 
-        a.intersect(b);
-        assertTrue(a.member(10));
+        Set res = a.intersect(b);
+        assertTrue(res.member(10));
+        assertTrue(res.toArray().length == 1);
+        assertFalse(res.member(15));
+        assertFalse(res.member(5));
+        assertFalse(res.member(20));
+    }
+
+    @Test
+    public void intersectTestBC(){
+        Set a = new Set();
+        a.insert(10);
+        a.insert(15);
+
+        Set b = new Set();
+        b.insert(10);
         
+        Set res = a.intersect(b);
+        
+        assertTrue(res.member(10));
+        assertTrue(res.toArray().length == 1);
+        assertFalse(res.member(15));
+        assertFalse(res.member(5));
+
     }
     
 }
