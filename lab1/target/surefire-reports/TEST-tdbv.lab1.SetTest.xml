@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tdbv.lab1.SetTest" time="0.113" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="tdbv.lab1.SetTest" time="0.163" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,9 +15,9 @@
     <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\DANIEL~1\AppData\Local\Temp\surefire15861302692083947293\surefirebooter7447822746278832423.jar C:\Users\DanielCole\AppData\Local\Temp\surefire15861302692083947293 2024-11-13T16-28-29_082-jvmRun1 surefire4432769578808308192tmp surefire_016166260220748709173tmp"/>
+    <property name="sun.java.command" value="C:\Users\DANIEL~1\AppData\Local\Temp\surefire16130962503888264572\surefirebooter2832387452981760273.jar C:\Users\DanielCole\AppData\Local\Temp\surefire16130962503888264572 2024-11-14T10-40-38_886-jvmRun1 surefire9502657411720233847tmp surefire_03819248378854060162tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="tdbv.lab1.SetTest#intersectTest"/>
+    <property name="test" value="tdbv.lab1.SetTest#distinctClosedTest"/>
     <property name="surefire.test.class.path" value="C:\Users\DanielCole\Documents\Datavetenskap\Yr2\LP2\Testing\Labs\lab1\target\test-classes;C:\Users\DanielCole\Documents\Datavetenskap\Yr2\LP2\Testing\Labs\lab1\target\classes;C:\Users\DanielCole\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\DanielCole\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\DanielCole"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\DANIEL~1\AppData\Local\Temp\surefire15861302692083947293\surefirebooter7447822746278832423.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\DANIEL~1\AppData\Local\Temp\surefire16130962503888264572\surefirebooter2832387452981760273.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.1+12-LTS-29"/>
@@ -60,5 +60,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="intersectTest" classname="tdbv.lab1.SetTest" time="0.015"/>
+  <testcase name="distinctClosedTest" classname="tdbv.lab1.SetTest" time="0.007"/>
 </testsuite>

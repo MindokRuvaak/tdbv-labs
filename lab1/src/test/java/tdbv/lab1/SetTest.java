@@ -88,5 +88,23 @@ public class SetTest {
         assertFalse(res.member(5));
 
     }
+
+    @Test
+    public void distinctClosedTest(){
+        Set s  = new Set();
+        s.insert(0);
+        s.insert(1);
+        s.insert(2);
+        s.insert(3);
+        s.insert(4);
+        s.insert(5);
+        s.insert(6);
+        s.insert(7);
+        assertFalse(s.distinctClosed( (a,b)-> a+b ));
+        assertFalse(s.distinctClosed( (a,b)-> a-b ));
+        
+        assertTrue(testSet.distinctClosed( (a,b)-> a+b ));
+        assertTrue(testSet.distinctClosed( (a,b)-> a-b ));
+    }
     
 }
