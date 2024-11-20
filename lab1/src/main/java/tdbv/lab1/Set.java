@@ -74,13 +74,7 @@ public class Set {
       for (int j = i; j < a.size(); j++) {
         vi = a.get(i);
         vj = a.get(j);
-        if (
-          !(
-            member(f.applyAsInt(vi, vj)
-            ) 
-          || 
-          vi == vj)
-          ) {
+        if ( !(member(f.applyAsInt(vi, vj)) || vi == vj)) {
             return false;
           }
       }

@@ -1,4 +1,4 @@
-a) setRequiredNumber
+a) setRequiredNumber (sRN)
 public void setRequiredNumber(int nemployee, int starttime, int endtime)
 
 requires:
@@ -19,7 +19,48 @@ ensures:
 
 
 
+Input space/Partition: 
+    (n)employee >= 0  //  | n = 0  | n > 0  |        |
+    (s)tarttime >= 0  //  | s = 0  | s > 0  |        |
+    (e)ndtime   >= 0  //  | e = s  | e > s  | e < s  |
 
+
+
+Block #1:  {n = 0, s = 0, e = s}
+    test_sRN_part1: input: {n = 0, s = 0, e = 0}
+
+Block #2:  {n = 0, s = 0, e > s}
+    test_sRN_part2: input: {n = 0, s = 0, e = 5}
+
+Block #3:  {n = 0, s = 0, e < s}
+    test_sRN_part1: input: {n = 0, s = 0, e = -5} INVALID INPUT e < 0
+
+Block #4:  {n = 0, s > 0, e = s}
+    test_sRN_part1: input: {n = 0, s = 5, e = 5}
+
+Block #5:  {n = 0, s > 0, e > s}
+    test_sRN_part1: input: {n = 0, s = 5, e = 10}
+
+Block #6:  {n > 0, s > 0, e < s}
+    test_sRN_part1: input: {n = 0, s = 5, e = 0}
+
+Block #7:  {n > 0, s = 0, e = s}
+    test_sRN_part1: input: {n = 5, s = 0, e = 0}
+
+Block #8:  {n > 0, s = 0, e > s}
+    test_sRN_part1: input: {n = 5, s = 0, e = 5}
+
+Block #9:  {n > 0, s = 0, e < s}
+    test_sRN_part1: input: {n = 5, s = 0, e = -5} INVALID INPUT e < 0
+
+Block #10: {n > 0, s > 0, e = s}
+    test_sRN_part1: input: {n = 5, s = 5, e = 5}
+
+Block #11: {n > 0, s > 0, e > s}
+    test_sRN_part1: input: {n = 5, s = 5, e = 10}
+
+Block #12: {n > 0, s > 0, e < s}
+    test_sRN_part1: input: {n = 5, s = 5, e = 0}
 
 
 
