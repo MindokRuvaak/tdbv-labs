@@ -1,0 +1,43 @@
+a) setRequiredNumber
+public void setRequiredNumber(int nemployee, int starttime, int endtime)
+
+requires:
+  0 <= nemployee and  0 <= starttime and  0 <=endtime
+ensures:
+  if starttime > endtime then
+    the schedule is unchanged
+  otherwise
+      for each Hour between starttime and endtime (inclusive)
+          if the length of workingEmployees is greater than nemployee
+          then
+             requiredNumber is set to nemployee and workingEmployees
+             keeps a number of employees equal to nemployee, discarding
+             the rest
+          otherwise
+             requiredNumber is set to nemployee and workingEmployees is unchanged
+      and the rest of the schedule is unchanged
+
+
+
+
+
+
+
+
+
+b) nextIncomplete
+int WorkSchedule.nextIncomplete(int currenttime)
+
+
+requires:
+  currenttime >= 0 and currenttime < size
+ensures:
+  if there is an hour in the interval currenttime to size - 1 such that
+     the length of workingEmployees is less that requiredNumber
+  then
+    returns the time of the hour closest to currenttime such that
+    the length of workingEmployees is less that requiredNumber
+  otherwise
+    returns -1
+  and in either case the schedule is unchanged
+
