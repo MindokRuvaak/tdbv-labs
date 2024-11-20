@@ -28,39 +28,51 @@ Input space/Partition:
 
 Block #1:  {n = 0, s = 0, e = s}
     test_sRN_part1: input: {n = 0, s = 0, e = 0}
+        expected:
 
 Block #2:  {n = 0, s = 0, e > s}
     test_sRN_part2: input: {n = 0, s = 0, e = 5}
+        expected:
 
 Block #3:  {n = 0, s = 0, e < s}
-    test_sRN_part1: input: {n = 0, s = 0, e = -5} INVALID INPUT e < 0
+    test_sRN_part1: input: {n = 0, s = 0, e = -5} INVALID INPUT (e < 0)
+        expected:
 
 Block #4:  {n = 0, s > 0, e = s}
     test_sRN_part1: input: {n = 0, s = 5, e = 5}
+        expected:
 
 Block #5:  {n = 0, s > 0, e > s}
     test_sRN_part1: input: {n = 0, s = 5, e = 10}
+        expected:
 
 Block #6:  {n > 0, s > 0, e < s}
     test_sRN_part1: input: {n = 0, s = 5, e = 0}
+        expected:
 
 Block #7:  {n > 0, s = 0, e = s}
     test_sRN_part1: input: {n = 5, s = 0, e = 0}
+        expected:
 
 Block #8:  {n > 0, s = 0, e > s}
     test_sRN_part1: input: {n = 5, s = 0, e = 5}
+        expected:
 
 Block #9:  {n > 0, s = 0, e < s}
-    test_sRN_part1: input: {n = 5, s = 0, e = -5} INVALID INPUT e < 0
+    test_sRN_part1: input: {n = 5, s = 0, e = -5} INVALID INPUT (e < 0)
+        expected:
 
 Block #10: {n > 0, s > 0, e = s}
     test_sRN_part1: input: {n = 5, s = 5, e = 5}
+        expected:
 
 Block #11: {n > 0, s > 0, e > s}
     test_sRN_part1: input: {n = 5, s = 5, e = 10}
+        expected:
 
 Block #12: {n > 0, s > 0, e < s}
     test_sRN_part1: input: {n = 5, s = 5, e = 0}
+        expected:
 
 
 

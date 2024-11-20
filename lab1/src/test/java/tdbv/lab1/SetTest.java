@@ -12,7 +12,6 @@ public class SetTest {
     @Before
     public void setup() {
         testSet = new Set();
-        testSet.insert(10);
     }
 
 
@@ -48,6 +47,8 @@ public class SetTest {
 
     @Test
     public void memberTest(){
+        testSet.insert(10);
+
         assertTrue(testSet.member(10));
         assertFalse(testSet.member(5));
         assertFalse(testSet.member(15));
