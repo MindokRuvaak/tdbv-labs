@@ -28,53 +28,74 @@ Input space/Partition:
 
 Block #1:  {n = 0, s = 0, e = s}
     test_sRN_part1: input: {n = 0, s = 0, e = 0}
-        expected:
+        expected: 
+            ws.readSchedule(0).requiredNumber = 0
 
 Block #2:  {n = 0, s = 0, e > s}
-    test_sRN_part2: input: {n = 0, s = 0, e = 5}
+    test_sRN_part2: input: {n = 0, s = 0, e = 1}
         expected:
+            ws.readSchedule(0).requiredNumber = 0 
+            ws.readSchedule(1).requiredNumber = 0
 
 Block #3:  {n = 0, s = 0, e < s}
-    test_sRN_part1: input: {n = 0, s = 0, e = -5} INVALID INPUT (e < 0)
+    test_sRN_part3: input: {n = 0, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s -> unchanged.
         expected:
+            ws.readSchedule(0).requiredNumber = 0
 
 Block #4:  {n = 0, s > 0, e = s}
-    test_sRN_part1: input: {n = 0, s = 5, e = 5}
+    test_sRN_part4: input: {n = 0, s = 1, e = 1}
         expected:
+            ws.readSchedule(1).requiredNumber = 0
 
 Block #5:  {n = 0, s > 0, e > s}
-    test_sRN_part1: input: {n = 0, s = 5, e = 10}
+    test_sRN_part5: input: {n = 0, s = 1, e = 2}
         expected:
+            ws.readSchedule(1).requiredNumber = 0
+            ws.readSchedule(2).requiredNumber = 0
 
 Block #6:  {n > 0, s > 0, e < s}
-    test_sRN_part1: input: {n = 0, s = 5, e = 0}
+    test_sRN_part6: input: {n = 0, s = 1, e = 0}
         expected:
+            ws.readSchedule(0).requiredNumber = 0 
+            ws.readSchedule(1).requiredNumber = 0
 
 Block #7:  {n > 0, s = 0, e = s}
-    test_sRN_part1: input: {n = 5, s = 0, e = 0}
+    test_sRN_part7: input: {n = 1, s = 0, e = 0}
         expected:
+            ws.readSchedule(0).requiredNumber = 1 
 
 Block #8:  {n > 0, s = 0, e > s}
-    test_sRN_part1: input: {n = 5, s = 0, e = 5}
+    test_sRN_part8: input: {n = 1, s = 0, e = 1}
         expected:
+            ws.readSchedule(0).requiredNumber = 1 
+            ws.readSchedule(1).requiredNumber = 1
 
 Block #9:  {n > 0, s = 0, e < s}
-    test_sRN_part1: input: {n = 5, s = 0, e = -5} INVALID INPUT (e < 0)
+    test_sRN_part9: input: {n = 1, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s -> unchanged.
         expected:
+            ws.readSchedule(0).requiredNumber = 0
 
 Block #10: {n > 0, s > 0, e = s}
-    test_sRN_part1: input: {n = 5, s = 5, e = 5}
+    test_sRN_part10: input: {n = 1, s = 1, e = 1}
         expected:
+            ws.readSchedule(1).requiredNumber = 1
 
 Block #11: {n > 0, s > 0, e > s}
-    test_sRN_part1: input: {n = 5, s = 5, e = 10}
+    test_sRN_part11: input: {n = 1, s = 1, e = 2}
         expected:
+            ws.readSchedule(1).requiredNumber = 1
+            ws.readSchedule(2).requiredNumber = 1
 
 Block #12: {n > 0, s > 0, e < s}
-    test_sRN_part1: input: {n = 5, s = 5, e = 0}
+    test_sRN_part12: input: {n = 1, s = 1, e = 0}
         expected:
+            ws.readSchedule(1).requiredNumber = 0
+            ws.readSchedule(0).requiredNumber = 0
 
 
+
+
+Found bugs: None
 
 
 
@@ -94,3 +115,26 @@ ensures:
     returns -1
   and in either case the schedule is unchanged
 
+
+
+Input space/Partition:
+    (c)urrenttime >= 0  //  | c = 0  | c > 0  |
+    (s)ize >= 0         //  | s = 0  | s > c  |
+
+
+
+Block #1:  {c = 0, s = 0}
+    test_sRN_part1: input: {c = 0, s = 0}
+        expected:
+
+Block #2:  {c > 0, s > c}
+    test_sRN_part1: input: {c = 1, s = 2}
+        expected:
+
+Block #3:  {c = 0, s > c}
+    test_sRN_part1: input: {c = 0, s = 1}
+        expected:
+
+Block #4:  {c > 0, s = 0}
+    test_sRN_part1: input: {c = 2, s = 0}  INVALID INPUT (c > s)
+        expected:
