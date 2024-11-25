@@ -1,4 +1,19 @@
+Task 1
 
+Test 1:
+$ java Dates 1 1 2 28
+The difference in days between 1/1 and 2/28 is:
+27
+
+Test 2:
+$ java Dates 1 31 2 28
+The difference in days between 1/31 and 2/28 is:
+-3
+
+Test 3:
+$ java Dates 1 31 2 32
+The difference in days between 1/31 and 2/32 is:
+1
 
 Local variables: input{1 2 3 4}
 someMonth = 1
