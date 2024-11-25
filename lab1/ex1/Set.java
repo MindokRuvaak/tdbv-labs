@@ -45,6 +45,10 @@ public class Set {
     return false;
   }
 
+  /*
+  change from mutator to returning a new set 
+  (Can change back if needed but we think not mutating makes this a better function overall)
+  */
   public Set intersect(Set s) {
     Set res = new Set(); 
     ArrayList<Integer> b = s.a;
