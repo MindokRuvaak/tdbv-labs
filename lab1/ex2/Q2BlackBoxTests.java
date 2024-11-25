@@ -5,7 +5,7 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.Formatter;
 
-public class Q2BlackBoxTest {
+public class Q2BlackBoxTests {
 
     private static final Logger lgr = Logger.getLogger(Q2BlackBoxTest.class.getName());
     private static final Level I = Level.INFO;

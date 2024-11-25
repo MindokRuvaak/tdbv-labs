@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class SetTest {
+public class SetTests {
     Set testSet;
 
     @Before
