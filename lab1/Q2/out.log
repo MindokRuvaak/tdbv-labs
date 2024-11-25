@@ -103,9 +103,6 @@ Block #8:
 INFO: 1
 CONFIG: -------
 
-Border case #1:
+Edge cases:
 INFO: -1
-CONFIG: -------
-
-Border case #2
-INFO: 10000
+INFO: 1048575

@@ -177,8 +177,11 @@ Block #8:  {c > 0, s > 1} // 1 req @ 1
     test_nI_part8: input: {c = 1, s = 2}
         expected: wsb1.nextIncomplete(1) = 1
 
-Border cases:
-    ???
+Border cases: // avoiding memory error, using A = 2^20 = 1 048 576
+    test_nI_border1: input: {c = A-1, s = A}, 0 req
+        expected: wsb1.nextIncomplete(A-1) = -1
+    test_nI_border1: input: {c = A-1, s = A}, A req @ A-1
+        expected: wsb1.nextIncomplete(A-1) = A
 
 
 Found bugs: None
