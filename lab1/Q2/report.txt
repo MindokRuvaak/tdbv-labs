@@ -106,12 +106,12 @@ Border cases:
 
 
 Found bugs: 
+        Exception; Index n out of bounds for length 
     Border case 1: 
         Error; Array size to large @ INT_MAX
         Error; Out of memory @ INT_MAX/20
-        Exception; Index 21474836 out of bounds for length 21474836 @ INT_MAX/100
 
-    If endtime == schedule size: index out of bounds exception
+    If endtime == schedule size => index out of bounds exception
 
 
 
@@ -139,25 +139,46 @@ Input space/Partition:
 
 
 // with no required added all tests should (and will) result in -1
-// add required?
+// add required!
 // what is size? number of timeslots? size of schedule?
 
 Block #1:  {c = 0, s = 1}
     test_nI_part1: input: {c = 0, s = 1}
-        expected: -1
+        expected: wsb1.nextIncomplete(0) = -1
 
 Block #2:  {c > 0, s = 1}
-    test_nI_part1: input: {c = 1, s = 1}
-        expected: -1
+    test_nI_part2: input: {c = 1, s = 1}
+        expected: wsb1.nextIncomplete(0) = -1
 
 
 Block #3:  {c = 0, s > 1}
-    test_nI_part1: input: {c = 0, s = 2}
-        expected: -1
+    test_nI_part3: input: {c = 0, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
 
 Block #4:  {c > 0, s > 1}
-    test_nI_part1: input: {c = 1, s = 2}
-        expected: -1
+    test_nI_part4: input: {c = 1, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
+
+
+Block #5:  {c = 0, s = 1} // 1 req @ 0
+    test_nI_part5: input: {c = 0, s = 1}
+        expected: wsb1.nextIncomplete(0) = 0
+
+Block #6:  {c > 0, s = 1} // 1 req @ 1
+    test_nI_part6: input: {c = 1, s = 1}
+        expected: wsb1.nextIncomplete(0) = 1
+
+
+Block #7:  {c = 0, s > 1} // 1 req @ 0
+    test_nI_part7: input: {c = 0, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
+
+Block #8:  {c > 0, s > 1} // 1 req @ 1
+    test_nI_part8: input: {c = 1, s = 2}
+        expected: wsb1.nextIncomplete(1) = 1
+
+Border cases:
+    
 
 
 Found bugs: None
