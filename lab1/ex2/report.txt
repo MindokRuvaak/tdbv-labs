@@ -1,0 +1,186 @@
+a) setRequiredNumber (sRN)
+public void setRequiredNumber(int nemployee, int starttime, int endtime)
+
+requires:
+  0 <= nemployee and  0 <= starttime and  0 <=endtime
+ensures:
+  if starttime > endtime then
+    the schedule is unchanged
+  otherwise
+      for each Hour between starttime and endtime (inclusive)
+          if the length of workingEmployees is greater than nemployee
+          then
+             requiredNumber is set to nemployee and workingEmployees
+             keeps a number of employees equal to nemployee, discarding
+             the rest
+          otherwise
+             requiredNumber is set to nemployee and workingEmployees is unchanged
+      and the rest of the schedule is unchanged
+
+
+
+Input space/Partition: 
+    (n)employee >= 0  //  | n = 0  | n > 0  |        |
+    (s)tarttime >= 0  //  | s = 0  | s > 0  |        |
+    (e)ndtime   >= 0  //  | e = s  | e > s  | e < s  |
+
+
+
+Block #1:  {n = 0, s = 0, e = s}
+    test_sRN_part1: input: {n = 0, s = 0, e = 0}
+        expected: 
+            ws.readSchedule(0).requiredNumber = 0
+
+Block #2:  {n = 0, s = 0, e > s}
+    test_sRN_part2: input: {n = 0, s = 0, e = 1}
+        expected:
+            ws.readSchedule(0).requiredNumber = 0 
+            ws.readSchedule(1).requiredNumber = 0
+
+Block #3:  {n = 0, s = 0, e < s}
+    test_sRN_part3: input: {n = 0, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
+        expected:
+            ws.readSchedule(0).requiredNumber = 0
+
+Block #4:  {n = 0, s > 0, e = s}
+    test_sRN_part4: input: {n = 0, s = 1, e = 1}
+        expected:
+            ws.readSchedule(1).requiredNumber = 0
+
+Block #5:  {n = 0, s > 0, e > s}
+    test_sRN_part5: input: {n = 0, s = 1, e = 2}
+        expected:
+            ws.readSchedule(1).requiredNumber = 0
+            ws.readSchedule(2).requiredNumber = 0
+
+Block #6:  {n > 0, s > 0, e < s}
+    test_sRN_part6: input: {n = 0, s = 1, e = 0}
+        expected:
+            ws.readSchedule(0).requiredNumber = 0 
+            ws.readSchedule(1).requiredNumber = 0
+
+Block #7:  {n > 0, s = 0, e = s}
+    test_sRN_part7: input: {n = 1, s = 0, e = 0}
+        expected:
+            ws.readSchedule(0).requiredNumber = 1 
+
+Block #8:  {n > 0, s = 0, e > s}
+    test_sRN_part8: input: {n = 1, s = 0, e = 1}
+        expected:
+            ws.readSchedule(0).requiredNumber = 1 
+            ws.readSchedule(1).requiredNumber = 1
+
+Block #9:  {n > 0, s = 0, e < s}
+    test_sRN_part9: input: {n = 1, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
+        expected:
+            ws.readSchedule(0).requiredNumber = 0
+
+Block #10: {n > 0, s > 0, e = s}
+    test_sRN_part10: input: {n = 1, s = 1, e = 1}
+        expected:
+            ws.readSchedule(1).requiredNumber = 1
+
+Block #11: {n > 0, s > 0, e > s}
+    test_sRN_part11: input: {n = 1, s = 1, e = 2}
+        expected:
+            ws.readSchedule(1).requiredNumber = 1
+            ws.readSchedule(2).requiredNumber = 1
+
+Block #12: {n > 0, s > 0, e < s}
+    test_sRN_part12: input: {n = 1, s = 1, e = 0}
+        expected:
+            ws.readSchedule(1).requiredNumber = 0
+            ws.readSchedule(0).requiredNumber = 0
+
+
+
+
+Border cases:
+    //Lower border covered in tests
+    test_sRN_border1 input:  {n = INT_MAX, s = INT_MAX, e = INT_MAX}
+        expected: 
+            ws.readSchedule(INT_MAX).requiredNumber = INT_MAX
+
+
+
+
+
+Found bugs: 
+        Exception; Index n out of bounds for length 
+    Border case 1: 
+        Error; Array size to large @ INT_MAX
+        Error; Out of memory @ INT_MAX/20
+
+    If endtime == schedule size => index out of bounds exception
+
+
+
+b) nextIncomplete (nI)
+int WorkSchedule.nextIncomplete(int currenttime)
+
+
+requires:
+  currenttime >= 0 and currenttime < size
+ensures:
+  if there is an hour in the interval currenttime to size - 1 such that
+     the length of workingEmployees is less that requiredNumber
+  then
+    returns the time of the hour closest to currenttime such that
+    the length of workingEmployees is less that requiredNumber
+  otherwise
+    returns -1
+  and in either case the schedule is unchanged
+
+
+
+Input space/Partition:
+    (c)urrenttime >= 0  //  | c = 0  | c > 0  |
+    (s)ize >= 1         //  | s = 1  | s > 1  | 
+
+
+
+Block #1:  {c = 0, s = 1}
+    test_nI_part1: input: {c = 0, s = 1}
+        expected: wsb1.nextIncomplete(0) = -1
+
+Block #2:  {c > 0, s = 1}
+    test_nI_part2: input: {c = 1, s = 1}
+        expected: wsb1.nextIncomplete(0) = -1
+
+
+Block #3:  {c = 0, s > 1}
+    test_nI_part3: input: {c = 0, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
+
+Block #4:  {c > 0, s > 1}
+    test_nI_part4: input: {c = 1, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
+
+
+Block #5:  {c = 0, s = 1} // 1 req @ 0
+    test_nI_part5: input: {c = 0, s = 1}
+        expected: wsb1.nextIncomplete(0) = 0
+
+Block #6:  {c > 0, s = 1} // 1 req @ 1
+    test_nI_part6: input: {c = 1, s = 1}
+        expected: wsb1.nextIncomplete(0) = 1
+
+
+Block #7:  {c = 0, s > 1} // 1 req @ 0
+    test_nI_part7: input: {c = 0, s = 2}
+        expected: wsb1.nextIncomplete(1) = -1
+
+Block #8:  {c > 0, s > 1} // 1 req @ 1
+    test_nI_part8: input: {c = 1, s = 2}
+        expected: wsb1.nextIncomplete(1) = 1
+
+Border cases: 
+    // lower boundary in normal tests 
+    // avoiding memory error, using A = 2^20 = 1 048 576
+    test_nI_border1: input: {c = A-1, s = A}, 0 req
+        expected: wsb1.nextIncomplete(A-1) = -1
+    test_nI_border1: input: {c = A-1, s = A}, A req @ A-1
+        expected: wsb1.nextIncomplete(A-1) = A
+
+
+Found bugs: None
