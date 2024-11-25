@@ -38,7 +38,7 @@ Block #2:  {n = 0, s = 0, e > s}
             ws.readSchedule(1).requiredNumber = 0
 
 Block #3:  {n = 0, s = 0, e < s}
-    test_sRN_part3: input: {n = 0, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s -> unchanged.
+    test_sRN_part3: input: {n = 0, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
         expected:
             ws.readSchedule(0).requiredNumber = 0
 
@@ -71,7 +71,7 @@ Block #8:  {n > 0, s = 0, e > s}
             ws.readSchedule(1).requiredNumber = 1
 
 Block #9:  {n > 0, s = 0, e < s}
-    test_sRN_part9: input: {n = 1, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s -> unchanged.
+    test_sRN_part9: input: {n = 1, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
         expected:
             ws.readSchedule(0).requiredNumber = 0
 
@@ -95,9 +95,23 @@ Block #12: {n > 0, s > 0, e < s}
 
 
 
-Found bugs: None
+Border cases:
+    //Lower border covered in tests
+    test_sRN_border1 input:  {n = INT_MAX, s = INT_MAX, e = INT_MAX}
+        expected: 
+            ws.readSchedule(INT_MAX).requiredNumber = INT_MAX
 
 
+
+
+
+Found bugs: 
+    Border case 1: 
+        Error; Array size to large @ INT_MAX
+        Error; Out of memory @ INT_MAX/20
+        Exception; Index 21474836 out of bounds for length 21474836 @ INT_MAX/100
+
+    If endtime == schedule size: index out of bounds exception
 
 
 
