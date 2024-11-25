@@ -138,9 +138,6 @@ Input space/Partition:
     (s)ize >= 1         //  | s = 1  | s > 1  | 
 
 
-// with no required added all tests should (and will) result in -1
-// add required!
-// what is size? number of timeslots? size of schedule?
 
 Block #1:  {c = 0, s = 1}
     test_nI_part1: input: {c = 0, s = 1}
@@ -177,7 +174,9 @@ Block #8:  {c > 0, s > 1} // 1 req @ 1
     test_nI_part8: input: {c = 1, s = 2}
         expected: wsb1.nextIncomplete(1) = 1
 
-Border cases: // avoiding memory error, using A = 2^20 = 1 048 576
+Border cases: 
+    // lower boundary in normal tests 
+    // avoiding memory error, using A = 2^20 = 1 048 576
     test_nI_border1: input: {c = A-1, s = A}, 0 req
         expected: wsb1.nextIncomplete(A-1) = -1
     test_nI_border1: input: {c = A-1, s = A}, A req @ A-1
