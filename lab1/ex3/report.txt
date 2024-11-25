@@ -1,3 +1,5 @@
+
+
 Local variables: input{1 2 3 4}
 someMonth = 1
 someDay = 2
@@ -9,8 +11,9 @@ aMonth = 3
 daysBetween = 33        // should be 61
 
 
-Dates.daysInMonth(), line=13 - 16
+Dates.daysInMonth(), line=13 (- 16)
     daysInMonth(int)
+
 
 
 
@@ -21,6 +24,7 @@ main[1] eval Dates.daysInMonth(-1)
 main[1] eval Dates.daysInMonth(0)
  Dates.daysInMonth(0) = 31 
     - wrong
+
 
 main[1] eval Dates.daysInMonth(1) 
  Dates.daysInMonth(1) = 31 
@@ -57,6 +61,7 @@ main[1] eval Dates.daysInMonth(8)
 main[1] eval Dates.daysInMonth(9) 
  Dates.daysInMonth(9) = 30 
     - ok
+        
 
 main[1] eval Dates.daysInMonth(10) 
  Dates.daysInMonth(10) = 31 
@@ -70,6 +75,8 @@ main[1] eval Dates.daysInMonth(12)
  Dates.daysInMonth(12) = 31 
     - ok
 
+
+
 main[1] eval Dates.daysInMonth(13) 
  Dates.daysInMonth(13) = 31 
     - wrong
@@ -77,4 +84,11 @@ main[1] eval Dates.daysInMonth(13)
 main[1] eval Dates.daysInMonth(14) 
  Dates.daysInMonth(14) = 31 
     - wrong
+
+
+
+Bugs found:
+    line 13: Some months return wrong number of days
+    line 34: someDayInYear assigned 31 days, while aMonth is still 0. 
+        ¿ counts 31 days in month 0 ?
 
