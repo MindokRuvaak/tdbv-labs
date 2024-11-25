@@ -120,6 +120,7 @@ public class Q2 {
         /*
          * -----------------------------------------------------------------------------
          */
+        
         lgr.log(T, "b)\n\n\n" + //
                 "\nBlock #1:");
         WorkSchedule wsb1 = new WorkSchedule(0);
@@ -127,8 +128,18 @@ public class Q2 {
 
         lgr.log(T, "-------\n" + //
                 "\nBlock #2:");
-        WorkSchedule wsb2 = new WorkSchedule(5);
-        lgr.log(I, ""+wsb2.nextIncomplete(1));
+        WorkSchedule wsb2 = new WorkSchedule(1);
+        lgr.log(I, ""+wsb2.nextIncomplete(0));
+
+        lgr.log(T, "b)\n\n\n" + //
+                "\nBlock #3:");
+        WorkSchedule wsb3 = new WorkSchedule(0);
+        lgr.log(I, ""+wsb3.nextIncomplete(1));
+
+        lgr.log(T, "-------\n" + //
+                "\nBlock #4:");
+        WorkSchedule wsb4 = new WorkSchedule(1);
+        lgr.log(I, ""+wsb4.nextIncomplete(1));
 
     }
 }
