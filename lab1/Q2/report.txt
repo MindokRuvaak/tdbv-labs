@@ -99,7 +99,9 @@ Found bugs: None
 
 
 
-b) nextIncomplete
+
+
+b) nextIncomplete (nI)
 int WorkSchedule.nextIncomplete(int currenttime)
 
 
@@ -119,22 +121,29 @@ ensures:
 
 Input space/Partition:
     (c)urrenttime >= 0  //  | c = 0  | c > 0  |
-    (s)ize >= 0         //  | s = 0  | s > c  |
+    (s)ize >= 1         //  | s = 1  | s > 1  | 
 
 
+// with no required added all tests should (and will) result in -1
+// add required?
+// what is size? number of timeslots? size of schedule?
 
-Block #1:  {c = 0, s = 0}
-    test_sRN_part1: input: {c = 0, s = 0}
-        expected:
+Block #1:  {c = 0, s = 1}
+    test_nI_part1: input: {c = 0, s = 1}
+        expected: -1
 
-Block #2:  {c > 0, s > c}
-    test_sRN_part1: input: {c = 1, s = 2}
-        expected:
+Block #2:  {c > 0, s = 1}
+    test_nI_part1: input: {c = 1, s = 1}
+        expected: -1
 
-Block #3:  {c = 0, s > c}
-    test_sRN_part1: input: {c = 0, s = 1}
-        expected:
 
-Block #4:  {c > 0, s = 0}
-    test_sRN_part1: input: {c = 2, s = 0}  INVALID INPUT (c > s)
-        expected:
+Block #3:  {c = 0, s > 1}
+    test_nI_part1: input: {c = 0, s = 2}
+        expected: -1
+
+Block #4:  {c > 0, s > 1}
+    test_nI_part1: input: {c = 1, s = 2}
+        expected: -1
+
+
+Found bugs: None
