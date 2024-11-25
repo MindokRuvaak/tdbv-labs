@@ -1,0 +1,80 @@
+Local variables: input{1 2 3 4}
+someMonth = 1
+someDay = 2
+laterMonth = 3
+laterDay = 4
+someDayInYear = 31      // should be 2
+laterDayInYear = 62     // should be 63
+aMonth = 3
+daysBetween = 33        // should be 61
+
+
+Dates.daysInMonth(), line=13 - 16
+    daysInMonth(int)
+
+
+
+main[1] eval Dates.daysInMonth(-1) 
+ Dates.daysInMonth(-1) = 31 
+    - wrong
+
+main[1] eval Dates.daysInMonth(0)
+ Dates.daysInMonth(0) = 31 
+    - wrong
+
+main[1] eval Dates.daysInMonth(1) 
+ Dates.daysInMonth(1) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(2) 
+ Dates.daysInMonth(2) = 31
+    - wrong
+
+main[1] eval Dates.daysInMonth(3) 
+ Dates.daysInMonth(3) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(4) 
+ Dates.daysInMonth(4) = 31
+    - wrong
+
+main[1] eval Dates.daysInMonth(5) 
+ Dates.daysInMonth(5) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(6) 
+ Dates.daysInMonth(6) = 30 
+    - ok
+
+main[1] eval Dates.daysInMonth(7) 
+ Dates.daysInMonth(7) = 30 
+    - wrong
+
+main[1] eval Dates.daysInMonth(8)
+ Dates.daysInMonth(8) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(9) 
+ Dates.daysInMonth(9) = 30 
+    - ok
+
+main[1] eval Dates.daysInMonth(10) 
+ Dates.daysInMonth(10) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(11) 
+ Dates.daysInMonth(11) = 30 
+    - ok
+
+main[1] eval Dates.daysInMonth(12) 
+ Dates.daysInMonth(12) = 31 
+    - ok
+
+main[1] eval Dates.daysInMonth(13) 
+ Dates.daysInMonth(13) = 31 
+    - wrong
+
+main[1] eval Dates.daysInMonth(14) 
+ Dates.daysInMonth(14) = 31 
+    - wrong
+
