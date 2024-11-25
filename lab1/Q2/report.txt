@@ -178,7 +178,7 @@ Block #8:  {c > 0, s > 1} // 1 req @ 1
         expected: wsb1.nextIncomplete(1) = 1
 
 Border cases:
-    
+    ???
 
 
 Found bugs: None

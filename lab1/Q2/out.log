@@ -1,0 +1,111 @@
+CONFIG: a)
+
+Block #1:
+INFO: 0
+CONFIG: -------
+
+Block #2:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Block #3:
+INFO: no exception
+INFO: 0
+CONFIG: -------
+
+Block #4:
+INFO: 0
+CONFIG: -------
+
+Block #5:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Block #6:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Block #7:
+INFO: 1
+CONFIG: -------
+
+Block #8:
+INFO: 1
+INFO: 1
+CONFIG: -------
+
+Block #9:
+INFO: No exception
+CONFIG: -------
+
+Block #10:
+INFO: 1
+CONFIG: -------
+
+Block #11:
+INFO: 1
+INFO: 1
+CONFIG: -------
+
+Block #12:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Border case #1:
+CONFIG: -------
+
+Further testing
+INFO: Index out of bounds exception caught {0:0,0,0}
+INFO: Index out of bounds exception caught {1:0,0,1}
+INFO: 0 {1:0,1,0}
+INFO: 0 {1:0,0,0}
+INFO: Index out of bounds exception caught+ {1:0,0,2}
+
+
+
+CONFIG: b)
+
+
+
+Block #1:
+INFO: -1
+CONFIG: -------
+
+Block #2:
+INFO: -1
+CONFIG: -------
+
+Block #3:
+INFO: -1
+CONFIG: -------
+
+Block #4:
+INFO: -1
+CONFIG: -------
+
+Block #5:
+INFO: 0
+CONFIG: -------
+
+Block #6:
+INFO: 1
+CONFIG: -------
+
+Block #7:
+INFO: -1
+CONFIG: -------
+
+Block #8:
+INFO: 1
+CONFIG: -------
+
+Border case #1:
+INFO: -1
+CONFIG: -------
+
+Border case #2
+INFO: 10000

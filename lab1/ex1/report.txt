@@ -1,0 +1,5 @@
+Found bugs:
+    Insert adds inserted element twice;
+        fix -> replace 'break' with 'return'
+    Intersect skips elements and ends early;
+        fix -> instead of mutating array return a new array with result. 
