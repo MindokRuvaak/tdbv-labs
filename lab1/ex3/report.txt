@@ -104,6 +104,7 @@ main[1] eval Dates.daysInMonth(14)
 
 Bugs found:
     line 13: Some months return wrong number of days
-    line 34: someDayInYear assigned 31 days, while aMonth is still 0. 
+    line 34: SomeDayInYear assigned 31 days, while aMonth is still 0. 
         ¿ counts 31 days in month 0 ?
-
+    line 48: Does not handle case where first date occurs later in year compared to second date 
+        (e.g. 8 5 3 1), and returns negative value instead of days untill date next year. 
