@@ -34,10 +34,12 @@ class Dates {
         /* of someMonth and laterMonth are. */
         int someDayInYear = 0;
         int laterDayInYear = 0;
-        for (aMonth = 0; aMonth < someMonth; aMonth = aMonth + 1) {
+        // Fix: set aMonth to 1 initially
+        for (aMonth = 1; aMonth < someMonth; aMonth = aMonth + 1) {
             someDayInYear = someDayInYear + daysInMonth(aMonth);
         }
-        for (; aMonth < laterMonth; aMonth = aMonth + 1) {
+        // Fix: reset aMonth before looping again
+        for (aMonth = 1; aMonth < laterMonth; aMonth = aMonth + 1) {
             laterDayInYear = laterDayInYear + daysInMonth(aMonth);
         }
         /* The answer */
@@ -47,6 +49,8 @@ class Dates {
                 laterMonth + "/" + laterDay + " is: ");
         daysBetween = laterDayInYear - someDayInYear;
         daysBetween = daysBetween + laterDay - someDay;
+        // Fix: take the result modulo 365 to get a positive number of days within a year
+        daysBetween = Math.floorMod(daysBetween, 365);
         System.out.println(daysBetween);
     }
 }
