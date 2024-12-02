@@ -1,7 +1,10 @@
 package tdbv.lab1;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -73,6 +76,41 @@ public class SetTest {
     }
 
     @Test
+    public void intersectTest2(){
+        Set a  = new Set();
+        a.insert(0);
+        a.insert(1);
+
+        Set b = new Set();
+        b.insert(0);
+
+        Set res1 = a.intersect(b);
+        Set res2 = b.intersect(a);
+        
+        assertArrayEquals(res1.toArray(), new int[]{0});
+        assertArrayEquals(res1.toArray(), res2.toArray());
+    }
+    
+    @Test
+    public void intersectTest3(){
+        Set a  = new Set();
+        a.insert(1);
+        a.insert(2);
+        a.insert(3);
+
+        Set b = new Set();
+        b.insert(6);
+        b.insert(7);
+        b.insert(8);
+
+        Set res1 = a.intersect(b);
+        Set res2 = b.intersect(a);
+        
+        assertArrayEquals(res1.toArray(), new int[]{});
+        assertArrayEquals(res1.toArray(), res2.toArray());
+    }
+
+    @Test
     public void intersectTestBC(){
         Set a = new Set();
         a.insert(10);
@@ -102,5 +140,22 @@ public class SetTest {
         assertTrue(testSet.distinctClosed( (a,b)-> a+b ));
         assertTrue(testSet.distinctClosed( (a,b)-> a-b ));
     }
-    
+
+    @Test
+    public void distinctClosedTest2(){
+        Set s1 = new Set();
+        s1.insert(-1);
+        s1.insert(-2);
+
+        assertFalse(s1.distinctClosed((a,b)->a+b));
+        assertFalse(s1.distinctClosed((a,b)->a-b));
+
+
+        Set s2 = new Set();
+        s2.insert(0);
+        s2.insert(1);
+
+        assertTrue(s2.distinctClosed((a,b)->a+b));
+        assertFalse(s2.distinctClosed((a,b)->a-b));
+    }
 }
