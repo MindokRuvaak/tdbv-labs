@@ -103,11 +103,18 @@ public class SetTest {
         b.insert(7);
         b.insert(8);
 
+
+        Set c = new Set();
+
         Set res1 = a.intersect(b);
         Set res2 = b.intersect(a);
-        
-        assertArrayEquals(res1.toArray(), new int[]{});
+        Set res3 = a.intersect(c);
+        Set res4 = c.intersect(a);
+
+        assertArrayEquals(new int[]{}, res1.toArray());
         assertArrayEquals(res1.toArray(), res2.toArray());
+        assertArrayEquals(res2.toArray(), res3.toArray());
+        assertArrayEquals(res4.toArray(), res1.toArray());
     }
 
     @Test

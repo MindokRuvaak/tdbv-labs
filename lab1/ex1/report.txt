@@ -3,3 +3,5 @@ Found bugs:
         fix -> replace 'break' with 'return'
     Intersect skips elements and ends early;
         fix -> instead of mutating array return a new array with result. 
+    distinctClosed only checks if f(a,b) in set, not f(b,a) 
+        fix -> replace ``int j = i´´ in second for-loop with ``int j = 0´´
