@@ -20,7 +20,7 @@ ensures:
 
 
 Input space/Partition: 
-    (n)employee >= 0  //  | n = 0  | n > 0  |        |
+    (n)employee >= 0  //  | n = 0  | n = 1  | n > 1  |
     (s)tarttime >= 0  //  | s = 0  | s > 0  |        |
     (e)ndtime   >= 0  //  | e = s  | e > s  | e < s  |
 
@@ -53,46 +53,84 @@ Block #5:  {n = 0, s > 0, e > s}
             ws.readSchedule(1).requiredNumber = 0
             ws.readSchedule(2).requiredNumber = 0
 
-Block #6:  {n > 0, s > 0, e < s}
-    test_sRN_part6: input: {n = 0, s = 1, e = 0}
+Block #6:  {n = 1, s > 0, e < s}
+    test_sRN_part6: input: {n = 1, s = 1, e = 0}
         expected:
             ws.readSchedule(0).requiredNumber = 0 
             ws.readSchedule(1).requiredNumber = 0
 
-Block #7:  {n > 0, s = 0, e = s}
+Block #7:  {n = 1, s = 0, e = s}
     test_sRN_part7: input: {n = 1, s = 0, e = 0}
         expected:
             ws.readSchedule(0).requiredNumber = 1 
 
-Block #8:  {n > 0, s = 0, e > s}
+Block #8:  {n = 1, s = 0, e > s}
     test_sRN_part8: input: {n = 1, s = 0, e = 1}
         expected:
             ws.readSchedule(0).requiredNumber = 1 
             ws.readSchedule(1).requiredNumber = 1
 
-Block #9:  {n > 0, s = 0, e < s}
+Block #9:  {n = 1, s = 0, e < s}
     test_sRN_part9: input: {n = 1, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
         expected:
             ws.readSchedule(0).requiredNumber = 0
 
-Block #10: {n > 0, s > 0, e = s}
+Block #10: {n = 1, s > 0, e = s}
     test_sRN_part10: input: {n = 1, s = 1, e = 1}
         expected:
             ws.readSchedule(1).requiredNumber = 1
 
-Block #11: {n > 0, s > 0, e > s}
+Block #11: {n = 1, s > 0, e > s}
     test_sRN_part11: input: {n = 1, s = 1, e = 2}
         expected:
             ws.readSchedule(1).requiredNumber = 1
             ws.readSchedule(2).requiredNumber = 1
 
-Block #12: {n > 0, s > 0, e < s}
+Block #12: {n = 1, s > 0, e < s}
     test_sRN_part12: input: {n = 1, s = 1, e = 0}
         expected:
             ws.readSchedule(1).requiredNumber = 0
             ws.readSchedule(0).requiredNumber = 0
 
 
+Block #13: {n > 1, s > 0, e < s}
+    test_sRN_part13: input: {n = 2, s = 1, e = 0}
+        expected:
+            ws.readSchedule(0).requiredNumber = 0 
+            ws.readSchedule(1).requiredNumber = 0
+
+Block #14  {n > 1, s = 0, e = s}
+    test_sRN_part14: input: {n = 2, s = 0, e = 0}
+        expected:
+            ws.readSchedule(0).requiredNumber = 2
+
+Block #15: {n > 1, s = 0, e > s}
+    test_sRN_part15: input: {n = 2, s = 0, e = 1}
+        expected:
+            ws.readSchedule(0).requiredNumber = 2 
+            ws.readSchedule(1).requiredNumber = 2
+
+Block #16: {n > 1, s = 0, e < s}
+    test_sRN_part16: input: {n = 2, s = 0, e = -1} INVALID INPUT (e < 0), but handeled by code e < s: unchanged.
+        expected:
+            ws.readSchedule(0).requiredNumber = 0
+
+Block #17: {n > 1, s > 0, e = s}
+    test_sRN_part17: input: {n = 2, s = 1, e = 1}
+        expected:
+            ws.readSchedule(1).requiredNumber = 2
+
+Block #18: {n > 1, s > 0, e > s}
+    test_sRN_part18: input: {n = 2, s = 1, e = 2}
+        expected:
+            ws.readSchedule(1).requiredNumber = 2
+            ws.readSchedule(2).requiredNumber = 2
+
+Block #19: {n > 1, s > 0, e < s}
+    test_sRN_part19: input: {n = 2, s = 1, e = 0}
+        expected:
+            ws.readSchedule(1).requiredNumber = 0
+            ws.readSchedule(0).requiredNumber = 0
 
 
 Border cases:
