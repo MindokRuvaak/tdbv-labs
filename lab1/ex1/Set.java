@@ -1,5 +1,3 @@
-package tdbv.lab1;
-
 import java.util.ArrayList;
 import java.util.function.IntBinaryOperator;
 
@@ -45,28 +43,26 @@ public class Set {
     return false;
   }
 
-  /*
-  change from mutator to returning a new set 
-  (Can change back if needed but we think not mutating makes this a better function overall)
-  */
-  public Set intersect(Set s) {
-    Set res = new Set(); 
+  public void intersect(Set s) {
     ArrayList<Integer> b = s.a;
-    for(int i = 0, j = 0 ; i < a.size() && j < b.size();) {
+    int i = 0, j = 0 ;
+    for(; i < a.size() && j < b.size();) {
       if (a.get(i).equals(b.get(j))){
-        res.insert(a.get(i));
+        //keep
         i++;
         j++;
       } else {
         if (a.get(i) < b.get(j)) {
-          //a.remove(i);
-          i++;
+          a.remove(i); // if in a but not in b, remove
+          // i++; don't increase index if remove, list auto-collapse elements
         } else {
           j++;
         }
       }
     }
-    return res;
+    while (i < a.size()) { // toss remaining values
+      a.remove(i);
+    }
   }
 
   // Try with:
@@ -75,10 +71,11 @@ public class Set {
   public boolean distinctClosed(IntBinaryOperator f) {
     int vi,vj;
     for (int i = 0; i < a.size(); i++) {
-      for (int j = i; j < a.size(); j++) {
+      for (int j = 0; j < a.size(); j++) { // j = i -> j = 0
         vi = a.get(i);
         vj = a.get(j);
-        if ( !(member(f.applyAsInt(vi, vj)) || vi == vj)) {
+        if (vi != vj && !member(f.applyAsInt(vi, vj))) { 
+          // slight restructure of boolean logic, same functionality.
             return false;
           }
       }
