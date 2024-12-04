@@ -179,38 +179,50 @@ Input space/Partition:
 
 Block #1:  {c = 0, s = 1}
     test_nI_part1: input: {c = 0, s = 1}
-        expected: wsb1.nextIncomplete(0) = -1
+        expected: ws.nextIncomplete(0) = -1
 
 Block #2:  {c > 0, s = 1}
     test_nI_part2: input: {c = 1, s = 1}
-        expected: wsb1.nextIncomplete(0) = -1
+        expected: ws.nextIncomplete(0) = -1
 
 
 Block #3:  {c = 0, s > 1}
     test_nI_part3: input: {c = 0, s = 2}
-        expected: wsb1.nextIncomplete(1) = -1
+        expected: ws.nextIncomplete(1) = -1
 
 Block #4:  {c > 0, s > 1}
     test_nI_part4: input: {c = 1, s = 2}
-        expected: wsb1.nextIncomplete(1) = -1
+        expected: ws.nextIncomplete(1) = -1
 
 
 Block #5:  {c = 0, s = 1} // 1 req @ 0
     test_nI_part5: input: {c = 0, s = 1}
-        expected: wsb1.nextIncomplete(0) = 0
+        expected: ws.nextIncomplete(0) = 0
 
 Block #6:  {c > 0, s = 1} // 1 req @ 1
     test_nI_part6: input: {c = 1, s = 1}
-        expected: wsb1.nextIncomplete(0) = 1
+        expected: ws.nextIncomplete(0) = 1
 
 
 Block #7:  {c = 0, s > 1} // 1 req @ 0
     test_nI_part7: input: {c = 0, s = 2}
-        expected: wsb1.nextIncomplete(1) = -1
+        expected: ws.nextIncomplete(1) = -1
 
 Block #8:  {c > 0, s > 1} // 1 req @ 1
     test_nI_part8: input: {c = 1, s = 2}
-        expected: wsb1.nextIncomplete(1) = 1
+        expected: ws.nextIncomplete(1) = 1
+
+Block #9:  {c >= 0, s > 1} // 1 req @ 0 & 1 req @ 2
+    test_nI_part9: input: {c = {0,1}, s = 3}
+        expected: ws.nextIncomplete(0) = 0
+        expected: ws.nextIncomplete(1) = 2
+
+Block #10:  {c > 0, s > 1} // 1 req @ 1 & 1 req @ 5 & 1 req @ 13
+    test_nI_part10: input: {c = {0,1}, s = 15}
+        expected: ws.nextIncomplete(0) = 1
+        expected: ws.nextIncomplete(2) = 13
+        expected: ws.nextIncomplete(6) = 13
+
 
 Border cases: 
     // lower boundary in normal tests 
@@ -221,4 +233,5 @@ Border cases:
         expected: wsb1.nextIncomplete(A-1) = A
 
 
-Found bugs: None
+Found bugs: 
+    nextIncomplete does not alwys return the next incomplete time, instead returns last incomplete time

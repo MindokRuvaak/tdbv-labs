@@ -293,6 +293,27 @@ public class Q2BlackBoxTest {
                 wsb8.setRequiredNumber(1, 1, 1);
                 lgr.log(I, "" + wsb8.nextIncomplete(1));
 
+                lgr.log(C, "-------\n" + //
+                                "\nBlock #9:");
+                WorkSchedule wsb9 = new WorkSchedule(3);
+                wsb9.setRequiredNumber(1, 0, 0);
+                wsb9.setRequiredNumber(0, 1, 1);
+                wsb9.setRequiredNumber(1, 2, 2);
+                lgr.log(I, "0:" + wsb9.nextIncomplete(0));
+                lgr.log(I, "2:" + wsb9.nextIncomplete(1));
+
+                
+                lgr.log(C, "-------\n" + //
+                                "\nBlock #9:");
+                WorkSchedule wsb10 = new WorkSchedule(15);
+                wsb10.setRequiredNumber(1, 1, 1);
+                wsb10.setRequiredNumber(1, 13, 13);
+                wsb10.setRequiredNumber(1, 5, 5);
+                lgr.log(I, "1:" + wsb10.nextIncomplete(0));
+                lgr.log(I, "5:" + wsb10.nextIncomplete(2));
+                lgr.log(I, "13:" + wsb10.nextIncomplete(6));
+
+
                 int a = 1048576;
                 lgr.log(C, "-------\n" + //
                                 "\nEdge cases:");
