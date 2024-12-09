@@ -140,7 +140,17 @@ Border cases:
             ws.readSchedule(INT_MAX).requiredNumber = INT_MAX
 
 
+Behaviour test: 
+    ''Assign and Reduce''
+    requiredNumber = 2, for timeslots 0-4
+    assign two workers @ each timeslot
+    requiredNumber = 2, @ 0
+    requiredNumber = 2, @ 1
+    requiredNumber = 1, @ 2
+    requiredNumber = 1, @ 3
+    requiredNumber = 0, @ 4
 
+    
 
 
 Found bugs: 

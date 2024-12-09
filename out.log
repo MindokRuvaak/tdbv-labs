@@ -55,15 +55,80 @@ INFO: 0
 INFO: 0
 CONFIG: -------
 
+Block #13:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Block #14:
+INFO: 2
+CONFIG: -------
+
+Block #15:
+INFO: 2
+INFO: 2
+CONFIG: -------
+
+Block #16:
+INFO: 0
+CONFIG: -------
+
+Block #17:
+INFO: 2
+CONFIG: -------
+
+Block #18:
+INFO: 2
+INFO: 2
+CONFIG: -------
+
+Block #19:
+INFO: 0
+INFO: 0
+CONFIG: -------
+
 Border case #1:
+INFO: Exception caught
 CONFIG: -------
 
 Further testing
+CONFIG: -------
+
+Assign and reduce
+CONFIG: Assign:
+CONFIG: nr:
+INFO: 2:2
+INFO: 2:2
+INFO: 2:2
+INFO: 2:2
+INFO: 2:2
+CONFIG: workerlist length:
+INFO: 2
+INFO: 2
+INFO: 2
+INFO: 2
+INFO: 2
+CONFIG: Reduce:
+CONFIG: nr
+INFO: 2:2
+INFO: 2:2
+INFO: 1:1
+INFO: 1:1
+INFO: 0:0
+CONFIG: workerlist length:
+INFO: 2
+INFO: 2
+INFO: 0
+INFO: 0
+INFO: 0
+CONFIG: -------
+
+Exceptions
 INFO: Index out of bounds exception caught {0:0,0,0}
 INFO: Index out of bounds exception caught {1:0,0,1}
 INFO: 0 {1:0,1,0}
 INFO: 0 {1:0,0,0}
-INFO: Index out of bounds exception caught+ {1:0,0,2}
+INFO: Index out of bounds exception caught {1:0,0,2}
 
 
 
@@ -101,6 +166,17 @@ CONFIG: -------
 
 Block #8:
 INFO: 1
+CONFIG: -------
+
+Block #9:
+INFO: 0:2
+INFO: 2:2
+CONFIG: -------
+
+Block #9:
+INFO: 1:13
+INFO: 5:13
+INFO: 13:13
 CONFIG: -------
 
 Edge cases:

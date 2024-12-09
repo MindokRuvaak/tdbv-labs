@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -180,26 +181,45 @@ public class Q2BlackBoxTest {
                 lgr.log(C, "-------\n" + //
                                 "\nAssign and reduce");
 
+                                lgr.log(C, "Assign:");
                 WorkSchedule wsANR = new WorkSchedule(5);
                 wsANR.setRequiredNumber(2, 0, 4);
                 wsANR.addWorkingPeriod("one", 0, 4);
                 wsANR.addWorkingPeriod("two", 0, 1);
                 wsANR.addWorkingPeriod("three", 2, 3);
                 wsANR.addWorkingPeriod("four", 4, 4);
+
+                lgr.log(C, "nr:");
                 lgr.log(I, "2:" + wsANR.readSchedule(0).requiredNumber);
                 lgr.log(I, "2:" + wsANR.readSchedule(1).requiredNumber);
                 lgr.log(I, "2:" + wsANR.readSchedule(2).requiredNumber);
                 lgr.log(I, "2:" + wsANR.readSchedule(3).requiredNumber);
                 lgr.log(I, "2:" + wsANR.readSchedule(4).requiredNumber);
+                
+                lgr.log(C, "workerlist length:");
+                lgr.log(I,"" + wsANR.workingEmployees(0,0).length);
+                lgr.log(I,"" + wsANR.workingEmployees(1,1).length);
+                lgr.log(I,"" + wsANR.workingEmployees(2,2).length);
+                lgr.log(I,"" + wsANR.workingEmployees(3,3).length);
+                lgr.log(I,"" + wsANR.workingEmployees(4,4).length);
 
+                lgr.log(C, "Reduce:");
+                wsANR.setRequiredNumber(1, 2, 3);
+                wsANR.setRequiredNumber(0, 4, 4);
 
-                wsANR.setRequiredNumber(1, 3, 4);
+                lgr.log(C, "nr");
                 lgr.log(I, "2:" + wsANR.readSchedule(0).requiredNumber);
                 lgr.log(I, "2:" + wsANR.readSchedule(1).requiredNumber);
-                lgr.log(I, "2:" + wsANR.readSchedule(2).requiredNumber);
+                lgr.log(I, "1:" + wsANR.readSchedule(2).requiredNumber);
                 lgr.log(I, "1:" + wsANR.readSchedule(3).requiredNumber);
-                lgr.log(I, "1:" + wsANR.readSchedule(4).requiredNumber);
+                lgr.log(I, "0:" + wsANR.readSchedule(4).requiredNumber);
 
+                lgr.log(C, "workerlist length:");
+                lgr.log(I,"" + wsANR.workingEmployees(0,0).length);
+                lgr.log(I,"" + wsANR.workingEmployees(1,1).length);
+                lgr.log(I,"" + wsANR.workingEmployees(2,2).length);
+                lgr.log(I,"" + wsANR.workingEmployees(3,3).length);
+                lgr.log(I,"" + wsANR.workingEmployees(4,4).length);
 
 
                 lgr.log(C, "-------\n" + //
@@ -210,7 +230,7 @@ public class Q2BlackBoxTest {
                         wsExceptionTest.setRequiredNumber(0, 0, 0);
                         lgr.log(I, "" + wsExceptionTest.readSchedule(0).requiredNumber + " {0:0,0,0}");
                 } catch (IndexOutOfBoundsException e) {
-                        lgr.log(I, "Index out of bounds exception caught" + " {0:0,0,0}");
+                        lgr.log(I, "Index out of bounds exception caught {0:0,0,0}");
                 }
 
                 WorkSchedule wsExceptionTest2 = new WorkSchedule(1);
@@ -218,7 +238,7 @@ public class Q2BlackBoxTest {
                         wsExceptionTest2.setRequiredNumber(0, 0, 1);
                         lgr.log(I, "" + wsExceptionTest2.readSchedule(0).requiredNumber + " {1:0,0,1}");
                 } catch (IndexOutOfBoundsException e) {
-                        lgr.log(I, "Index out of bounds exception caught" + " {1:0,0,1}");
+                        lgr.log(I, "Index out of bounds exception caught {1:0,0,1}");
                 }
 
                 WorkSchedule wsExceptionTest3 = new WorkSchedule(1);
@@ -226,7 +246,7 @@ public class Q2BlackBoxTest {
                         wsExceptionTest3.setRequiredNumber(0, 1, 0);
                         lgr.log(I, "" + wsExceptionTest3.readSchedule(0).requiredNumber + " {1:0,1,0}");
                 } catch (IndexOutOfBoundsException e) {
-                        lgr.log(I, "Index out of bounds exception caught" + " {1:0,1,0}");
+                        lgr.log(I, "Index out of bounds exception caught {1:0,1,0}");
                 }
 
                 WorkSchedule wsExceptionTest4 = new WorkSchedule(1);
@@ -234,7 +254,7 @@ public class Q2BlackBoxTest {
                         wsExceptionTest4.setRequiredNumber(0, 0, 0);
                         lgr.log(I, "" + wsExceptionTest4.readSchedule(0).requiredNumber + " {1:0,0,0}");
                 } catch (IndexOutOfBoundsException e) {
-                        lgr.log(I, "Index out of bounds exception caught" + " {1:0,0,0}");
+                        lgr.log(I, "Index out of bounds exception caught {1:0,0,0}");
                 }
 
                 WorkSchedule wsExceptionTest5 = new WorkSchedule(1);
@@ -242,7 +262,7 @@ public class Q2BlackBoxTest {
                         wsExceptionTest5.setRequiredNumber(0, 0, 2);
                         lgr.log(I, "" + wsExceptionTest5.readSchedule(0).requiredNumber + " {1:0,0,2}");
                 } catch (IndexOutOfBoundsException e) {
-                        lgr.log(I, "Index out of bounds exception caught+ {1:0,0,2}\n\n\n");
+                        lgr.log(I, "Index out of bounds exception caught {1:0,0,2}\n\n\n");
                 }
 
                 /*
