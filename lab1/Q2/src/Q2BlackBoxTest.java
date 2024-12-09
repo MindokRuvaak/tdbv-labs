@@ -197,11 +197,11 @@ public class Q2BlackBoxTest {
                 lgr.log(I, "2:" + wsANR.readSchedule(4).requiredNumber);
                 
                 lgr.log(C, "workerlist length:");
-                lgr.log(I,"" + wsANR.workingEmployees(0,0).length);
-                lgr.log(I,"" + wsANR.workingEmployees(1,1).length);
-                lgr.log(I,"" + wsANR.workingEmployees(2,2).length);
-                lgr.log(I,"" + wsANR.workingEmployees(3,3).length);
-                lgr.log(I,"" + wsANR.workingEmployees(4,4).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(0,0).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(1,1).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(2,2).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(3,3).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(4,4).length);
 
                 lgr.log(C, "Reduce:");
                 wsANR.setRequiredNumber(1, 2, 3);
@@ -215,11 +215,11 @@ public class Q2BlackBoxTest {
                 lgr.log(I, "0:" + wsANR.readSchedule(4).requiredNumber);
 
                 lgr.log(C, "workerlist length:");
-                lgr.log(I,"" + wsANR.workingEmployees(0,0).length);
-                lgr.log(I,"" + wsANR.workingEmployees(1,1).length);
-                lgr.log(I,"" + wsANR.workingEmployees(2,2).length);
-                lgr.log(I,"" + wsANR.workingEmployees(3,3).length);
-                lgr.log(I,"" + wsANR.workingEmployees(4,4).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(0,0).length);
+                lgr.log(I,"2:" + wsANR.workingEmployees(1,1).length);
+                lgr.log(I,"1:" + wsANR.workingEmployees(2,2).length);
+                lgr.log(I,"1:" + wsANR.workingEmployees(3,3).length);
+                lgr.log(I,"0:" + wsANR.workingEmployees(4,4).length);
 
 
                 lgr.log(C, "-------\n" + //
