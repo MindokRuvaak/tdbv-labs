@@ -25,49 +25,88 @@ class CircularMemory
   // Valid is the class invariant we would like to maintain
   // for any CircularMemory at any moment of its lifetime
   predicate Valid()
-    reads this//, this`cells, this`write_position, this`read_position // can still read fields?
+    reads this`cells, this`write_position, this`read_position, this`isFlipped // can still read fields?
   {
     // Think of some constraints on:
     // 1. cells.Length?
     // 2. write_position?
     // 3. read_position?
-    HasElem(cells) && WithinLimits(write_position) && WithinLimits(read_position)
+    cells.Length > 0
+    && (0 <= write_position < cells.Length)
+    && (0 <= read_position  < cells.Length)
+    && ( isFlipped ==> read_position >= write_position) 
+    && (!isFlipped ==> read_position <= write_position)
   }
-
 
 
   // A predicate indicating no more Read available
   predicate isEmpty()
-    reads this
+    reads this`isFlipped, this`read_position, this`write_position
   {
-    EqPointers() && !isFlipped
+    read_position == write_position && !isFlipped
   }
 
 
   //A predicate indicating no more Write should be allowed
   predicate isFull()
-    reads this
+    reads this`isFlipped, this`read_position, this`write_position
   {
-    EqPointers() && isFlipped
-
+    read_position == write_position && isFlipped
   }
 
 
-
-  predicate EqPointers() 
-  reads this`read_position, this`write_position
+  method Read() returns (isSuccess : bool, content : int)
+    requires Valid()
+    ensures  Valid()
+    ensures  isSuccess ==> (old(read_position) != read_position) || cells.Length == 1
+    ensures !isSuccess ==> old(read_position) == read_position
+    modifies this`cells, this`read_position, this`isFlipped
   {
-    read_position == write_position
+    content := cells[read_position];
+    if(isFlipped) 
+    {
+      isSuccess := true;
+      if (read_position + 1 == cells.Length) 
+      {
+        read_position := 0;
+        isFlipped := false;
+      }
+      else 
+      {
+        read_position := read_position + 1;
+      }
+    }
+    else
+    {
+      if (read_position == write_position) 
+      {
+        isSuccess := false;
+        content := 0;
+      }
+      else 
+      {
+        isSuccess:= true;
+        read_position := read_position + 1;
+      }
+    }
   }
 
-  predicate HasElem(a : array)
-  {
-    a.Length > 0
-  }
+  // method Write(input : int) returns (isSuccess : bool)
+  //   modifies this
+  //   requires Valid()
+  //   ensures  Valid()
+  //   ensures  isSuccess ==> ...
+  //   ensures !isSuccess ==> ...
+  // {
+  //   if(isFlipped)
+  //   {
+  //     ...
+  //   }
+  //   else // not flipped
+  //   {
+  //     ...
+  //   }
+  // }
 
-  predicate WithinLimits(index : int)
-    reads this`cells
-  {
-    0 <= index && index < cells.Length
-  }
+
 }
