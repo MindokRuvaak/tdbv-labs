@@ -1,0 +1,46 @@
+Answer to part 2 of question 1
+
+Weakest precondition:
+M(x,y) = method M(x:int, y:int) -> (a:int, b:int) in Q1.dfy
+P = a > b
+A = x > y
+S1 = {a := x; b:= y;}
+S2 = {a := y; b:= x;}
+    wp(M(x,y), P) 
+        = wp(if A then S1 else S2, a > b) 
+        | // if-statement
+        = A => wp(S1, P) && !A => wp(S2, P)
+        |
+        = x > y => wp(a := x; b:= y, P) && x <= y => wp(a := y; b:= x, P)
+        | // split into two cases 
+        | // (I)  = x >  y => wp(a := x; b:= y, P) 
+        | // (II) = x <= y => wp(a := y; b:= x, P)
+        = (I) && (II)
+        | 
+        *
+            (I) 
+                = x >  y => wp(a := x; b:= y, a > b) 
+                | // sequential
+                = x >  y => wp(a := x, wp(b:= y, a > b))
+                | // assignment
+                = x >  y => wp(a := x, a > y)
+                | // assignment
+                = x >  y => x > y
+                = A => A
+                -- trivially true
+
+            (II)
+                = x <= y => wp(a := y; b:= x, a > b)
+                | // sequential
+                = x <= y => wp(a := y, wp(b:= x, a > b))
+                | // assignment
+                = x <= y => wp(a := y, a > x)
+                | // assignment
+                = x <= y => y > x
+                = y >= x => y > x
+                -- false for y == x!
+        *
+        |
+        | //continuing
+        = (I) && (II)
+        = (x >  y => x > y) && (x <= y => y > x)
