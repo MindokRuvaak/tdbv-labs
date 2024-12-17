@@ -85,4 +85,30 @@ Part 3:
                 {Slb; }
             S2;
             }
+
+    In addition to what was shown in part 2, also show 
+        4. I && B => V > 0
+        5. I && B => wp(V_old := V; Slb, V < V_old)
+
+    4. I && B => V > 0
+        =  n - i >= - 1 && res == fact(i-1) && i <= n => n - i + 1 > 0
+        | // same as in part 2.2  n >= i is stronger than n - i >= - 1
+        = res == fact(i-1) && i <= n => n - i + 1 > 0
+        | i <= n <=> n - i >= 0 <=> n - i + 1 >= 1 <=> n - i + 1 > 
+        = true
     
+    5. I && B => wp(V_old := V; Slb, V < V_old)
+        = n - i >= - 1 && res == fact(i-1) && i <= n => 
+                        => wp(V_old := n - i + 1; res := res * i; i := i + 1, n - i + 1 < V_old)
+        | // sequential assignment
+        = n - i >= - 1 && res == fact(i-1) && i <= n => 
+                        => wp(V_old := n - i + 1; res := res * i, n - (i + 1) + 1 < V_old)
+        | // sequential assignment, res does not appear in postcondition, postconition unafffected
+        = n - i >= - 1 && res == fact(i-1) && i <= n => 
+                        => wp(V_old := n - i + 1; n - i < V_old)
+        | // assignment
+        = n - i >= - 1 && res == fact(i-1) && i <= n => n - i < n - i + 1
+        | // value of res does not affect RHS of implication
+        | RHS of implication trivially true since n - i < n - i + 1 <=> 0 < 1
+        = I && B => ture
+        = true
