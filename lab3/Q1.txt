@@ -1,7 +1,7 @@
 Answer to part 2 of question 1
 
 Weakest precondition:
-M(x,y) = method M(x:int, y:int) -> (a:int, b:int) in Q1.dfy
+M(x,y) = method M(x:int, y:int) returns (a:int, b:int) in Q1.dfy
 P = a > b
 A = x > y
 S1 = {a := x; b:= y;}
