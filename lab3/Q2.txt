@@ -1,0 +1,88 @@
+Answers to Q2 parts 2 and 3
+Part 2: 
+    Partial correctness
+    M(n) = method ComputeFact(n : nat) returns (res : nat)
+    Q = n > 0
+    R = res == fact(n)
+    S1 = {res := 1; var i := 2;}
+    S2 = skip
+    Slb = {res := res * i; i := i + 1;}
+    B = i <= n
+    I = n - i >= - 1 && res == fact(i-1)
+    
+        M(n)
+            requires Q
+            ensures R
+            {S1;
+                while B 
+                invariant I 
+                {Slb; }
+            S2;
+            }
+    Partial correctness is proven by showing: 
+        1. Q => wp(S1,I)
+        2. I && B => wp(S,I)
+        3. I && !B => wp(S2,R)
+
+    1. Q => wp(S1,I)
+        = n > 0 => wp(res := 1; var i := 2, n - i >= - 1 && res == fact(i-1))
+        | // sequential assignment
+        = Q => wp(res := 1, n - 2 >= - 1 && res == fact(2-1))
+        | // assignment
+        = n > 0 => n - 2 >= - 1 && 1 == fact(1)
+        | // fact(1) == 1, true by definition
+        | // A && true <=> A
+        = n > 0 => n - 2 >= - 1
+        | // if n >  0 then n >= 1 and n - 2 >= 1 - 2; 1 - 2 = -1, -1 >= -1, trivially true 
+        | // else false => A, trivially true
+        = true
+
+
+    2. I && B => wp(S,I)
+        = n - i >= - 1 && res == fact(i-1) && i <= n =>
+                                => wp(res := res * i; i := i + 1, n - i >= - 1 && res == fact(i-1))
+        | // sequential assignment
+        = n - i >= - 1 && res == fact(i-1) && i <= n =>
+                                => wp(res := res * i, n - (i+1) >= - 1 && res == fact(i+1-1))
+        | // assignment
+        = n - i >= - 1 && res == fact(i-1) && i <= n => n - (i+1) >= - 1 && res * i == fact(i)
+        | // n - i >= -1 
+        | // n >= i <=> n - i >= 0 -- this is stronger, A >= 0 <=> A > -1 => A >= -1
+        = res == fact(i-1) && i <= n => n - (i+1) >= - 1 && res * i == fact(i)
+        | // unless both terms in LHS are true implication is trivially true
+        = i <= n => n - (i+1) >= - 1 && fact(i-1) * i == fact(i)
+        | // fact(i-1) * i == fact(i), true by definition
+        | // n - (i+1) >= - 1 can be simplified to n >= i making implication trivially true
+        = true
+
+    3. I && !B => wp(S2,R)
+        = n - i >= - 1 && res == fact(i-1) && i > n => wp(skip, res == fact(n))
+        | // skip
+        = n - i >= - 1 && res == fact(i-1) && i > n => res == fact(n)
+        = n - i >= - 1 && i > n => fact(i-1) == fact(n)
+        | i > n <=> n - i < 0
+        | n - i >= - 1 && n - i < 0 => -1 <= n-i < 0 => n-i == -1 <=> n == i-1
+        = n == i-1 => fact(i-1) == fact(n)
+        = fact(i-1) == fact(i-1) / fact(n) == fact(n)
+        = true
+
+    (1.) && (2.) && (3.) => paartial correctness
+
+
+
+Part 3:
+    Total correctness
+    Also introducing variant
+    V = n - i + 1
+
+        M(n)
+            requires Q
+            ensures R
+            {S1;
+                while B 
+                invariant I 
+                variant V
+                {Slb; }
+            S2;
+            }
+    
